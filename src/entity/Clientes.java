@@ -57,9 +57,4 @@ public class Clientes  implements java.io.Serializable {
         this.telefono = telefono;
     }
 
-
-
-
 }
-
-

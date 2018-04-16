@@ -5,26 +5,27 @@ import entity.Clientes; //se la entidad Clientes creada por Hibernate
 import DAO.ClientesDAO; // se añade para acceder a la clase que lleva
 import java.util.logging.Level;
 import java.util.logging.Logger;
-                                // a cabo las operaciones administración (CRUD) Base de Datos
+// a cabo las operaciones administración (CRUD) Base de Datos
 /*fin modificacion josem*/
 
 /**
- * @author Fermin Velez Bello
- * algunas partes modificadas por Jose Miguel Guimera Padron
+ * @author Fermin Velez Bello algunas partes modificadas por Jose Miguel Guimera
+ * Padron
  */
 public class VentanaDetalle extends javax.swing.JDialog { // JDIALOG para tener modal o no modal
+
     /**
      * Creates new form VentanaDetalle
      */
-    
+
     /* añadido por josem */
-    ClientesDAO detDAO= new ClientesDAO(); // objeto desde el que se llamará a la operaciones admon Base de datos
+    ClientesDAO detDAO = new ClientesDAO(); // objeto desde el que se llamará a la operaciones admon Base de datos
     /* fin modificacion josem */
-   
+
     public boolean grabar; // <************ indica a la ventana principal si se ha pinchado el boton grabar o no. SIrve para comuniarrnos con la ventana principal
 
     public VentanaDetalle() {
-      
+
         initComponents();
 
     }
@@ -218,31 +219,29 @@ public class VentanaDetalle extends javax.swing.JDialog { // JDIALOG para tener 
     }// </editor-fold>//GEN-END:initComponents
 
     private void setVisibleTrue(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_setVisibleTrue
-  
-     
-        
+
+
     }//GEN-LAST:event_setVisibleTrue
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-   
-        this.setVisible(false); 
+
+        this.setVisible(false);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.grabar=false; // no grabar..      
+        this.grabar = false; // no grabar..      
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-         this.grabar=true; // queremos grabar..
+        this.grabar = true; // queremos grabar..
         this.setVisible(false);
     }//GEN-LAST:event_btnGrabarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        this.grabar=false; // no grabar.. 
+        this.grabar = false; // no grabar.. 
     }//GEN-LAST:event_formWindowActivated
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -265,7 +264,7 @@ public class VentanaDetalle extends javax.swing.JDialog { // JDIALOG para tener 
         /* modificado josem */
         // se busca el registro mediante hibernate pasando el nif y retorna objeto
         // cliente correspondiente al nif
-        Clientes cliente=null;
+        Clientes cliente = null;
         try {
             cliente = detDAO.getCliente(nifPinchado);
             // se rellenan los campos con los datos del objeto cliente obtenido
@@ -273,37 +272,34 @@ public class VentanaDetalle extends javax.swing.JDialog { // JDIALOG para tener 
         } catch (Exception ex) {
             Logger.getLogger(VentanaDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         this.txtNIF.setText(cliente.getNif());
         this.txtNombre.setText(cliente.getNombre());
         this.txtTLF.setText(cliente.getTelefono());
         this.txtDireccion.setText(cliente.getDireccion());
-        
+
     }
-    
-    
+
     void modoConsulta() // ponemos la ventana en modo consulta: solo se ve el boton cerrar
     {
         this.panelBotonesModifcar.setVisible(false);
         this.panelBotonesConsulta.setVisible(true);
         this.paint(this.getGraphics()); // forzar a que se repinte ... para que no deje cosas colgadas
-    
+
         this.setModal(false); // modo no modal
-   
 
     }
-    
-        
+
     void modoEditar() // ponemos la ventana en modo editar : se ven los botones grabar y cancelar
     {
         this.panelBotonesModifcar.setVisible(true);
         this.panelBotonesConsulta.setVisible(false);
-      
-         this.paint(this.getGraphics());
+
+        this.paint(this.getGraphics());
         this.setModal(true);
-    
+
     }
-    
+
     void limpiaCampos() //inicialia el valor de los textbox que tengo en la ventana.
     {
         this.txtNIF.setText("");
@@ -311,13 +307,23 @@ public class VentanaDetalle extends javax.swing.JDialog { // JDIALOG para tener 
         this.txtDireccion.setText("");
         this.txtTLF.setText("");
     }
-    
-    
+
     /*
        los siguiente m�todos son para obtener los datos que hay en los jTextfield.
-    */
-    public String getNif () { return this.txtNIF.getText();}
-    public String getNombre() {return this.txtNombre.getText();}
-    public String getDireccion() { return this.txtDireccion.getText();}
-    public String getTlf() { return this.txtTLF.getText();}
+     */
+    public String getNif() {
+        return this.txtNIF.getText();
+    }
+
+    public String getNombre() {
+        return this.txtNombre.getText();
+    }
+
+    public String getDireccion() {
+        return this.txtDireccion.getText();
+    }
+
+    public String getTlf() {
+        return this.txtTLF.getText();
+    }
 }

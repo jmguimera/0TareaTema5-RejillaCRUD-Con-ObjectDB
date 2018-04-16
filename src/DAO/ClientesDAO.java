@@ -41,14 +41,16 @@ public class ClientesDAO {
     }
 
     // modificando un registro (actualizarlo)
-    public void actualizaCliente(Clientes cliente) {
+    public void actualizaCliente(String clienteNif,Clientes nvocl) {
         try {
             iniciaOperacion();
             // actualizacion objectDB
             em.getTransaction().begin();
-            cliente.getNombre();
-            cliente.getTelefono();
-            cliente.getDireccion();
+            Clientes cliente=em.find(Clientes.class,clienteNif);
+            cliente.setNif(nvocl.getNif());
+            cliente.setNombre(nvocl.getNombre());            
+            cliente.setTelefono(nvocl.getTelefono());            
+            cliente.setDireccion(nvocl.getDireccion());            
             // confirma la grabacion
             em.getTransaction().commit();
         } catch (Exception he) {
