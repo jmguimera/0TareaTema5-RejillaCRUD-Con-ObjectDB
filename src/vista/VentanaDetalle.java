@@ -54,7 +54,7 @@ public class VentanaDetalle extends javax.swing.JDialog { // JDIALOG para tener 
         btnGrabar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setTitle("AllwaysStayOnTop");
+        setTitle("** Detalle del Registro Seleccionado **");
         setAlwaysOnTop(true);
         setBounds(new java.awt.Rectangle(300, 0, 0, 0));
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
